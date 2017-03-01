@@ -20,10 +20,9 @@
             "tecsvit\\apns\\": ""
         }
     },
-    "repositories":[
-        {
-            "type": "git",
-            "url": "https://github.com/fa2mm/tecsvit-apns.git"
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
         }
-    ]
+    }
 }
