@@ -2,8 +2,8 @@
     "name": "tecsvit/yii2-apns",
     "description": "Extension for sending Apple push notification",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension","apns"],
-    "license": "BSD-4-Clause",
+    "keywords": ["yii2","apns","extension"],
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Tecsvit",
@@ -17,5 +17,11 @@
         "psr-4": {
             "tecsvit\\apns\\": ""
         }
-    }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/fa2mm/tecsvit-apns.git"
+        }
+    ]
 }

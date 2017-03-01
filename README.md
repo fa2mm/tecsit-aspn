@@ -1,4 +1,4 @@
-Yii2 Apns Extension
+Yii2 APNs Extension
 ===================
 Extension for sending Apple push notification
 
@@ -25,7 +25,32 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
-
+Once the extension is installed, simply use it in your code by:
+into config file:
 ```php
-<?= \tecsvit\apns\AutoloadExample::widget(); ?>```
+'components' => [
+    ...
+    'apns' => [
+        'class' => '\tecsvit\apns\src\Sender',
+        'apnsHostProd'  => 'gateway.push.apple.com',
+        'apnsHostTest'  => 'gateway.sandbox.push.apple.com',
+        'apnsPort'      => 2195,
+        'apnsCertProd'  => dirname(__DIR__) . '/path/to/prod-serc/apple_push_notification_production.pem',
+        'apnsCertTest'  => dirname(__DIR__) . '/path/to/test-serc/apple_push_notification_test.pem',
+        'apnsPassphrase'=> dirname(__DIR__) . '/path/to/passphare',
+        'timeout'       => 500000, //microseconds
+    ],
+    ...
+]
+
+```
+into your code:
+```php
+/**
+ * @param array $alert Example: ['alert' => 'Push Message'] 
+ * @param string $token Apple token device
+ * @param bool $closeAfterPush Close the connection after the push?
+ */
+Yii::$app->apns->send($alert, $token, $closeAfterPush); ?>
+
+```
