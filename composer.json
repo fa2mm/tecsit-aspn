@@ -1,0 +1,21 @@
+{
+    "name": "tecsvit/yii2-apns",
+    "description": "Extension for sending Apple push notification",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","apns"],
+    "license": "BSD-4-Clause",
+    "authors": [
+        {
+            "name": "Tecsvit",
+            "email": "fa2m@ua.fm"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "tecsvit\\apns\\": ""
+        }
+    }
+}
