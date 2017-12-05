@@ -39,7 +39,8 @@ into config file:
         'apnsCertProd'  => dirname(__DIR__) . '/path/to/prod-serc/apple_push_notification_production.pem',
         'apnsCertTest'  => dirname(__DIR__) . '/path/to/test-serc/apple_push_notification_test.pem',
         'apnsPassphrase'=> dirname(__DIR__) . '/path/to/passphare',
-        'timeout'       => 500000, //microseconds
+        'timeout'       => 500000, //microseconds,
+        'mode'          => 'prod' //'prod', 'dev' or 'test', default 'dev'
     ],
     ...
 ]
