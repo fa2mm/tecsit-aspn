@@ -47,6 +47,7 @@ class Sender extends Component
     public $timeout                 = 0;
     public $mode                    = self::MODE_DEV;
     public $errorResponse           = [];
+    public $defaultBody = ['badge' => +1, 'sound' => 'default'];
 
     private $socketClient;
     private $context;
@@ -80,9 +81,8 @@ class Sender extends Component
         $this->createStreamSocket();
 
         //$alert = ['alert' => 'Push Message'];
-        $defaultBody = ['badge' => +1, 'sound' => 'default'];
 
-        $body['aps'] = array_merge($defaultBody, $alert);
+        $body['aps'] = array_merge($this->defaultBody, $alert);
 
         try {
             $payload    = json_encode($body);
