@@ -180,11 +180,11 @@ class Sender extends Component
             return false;
         }
 
-        if (!$this->socketClient) {
+        if ($this->socketClient) {
+            return true;
+        } else {
             $this->errorResponse['message'] = $this->errorString;
             return false;
-        } else {
-            return true;
         }
     }
 
