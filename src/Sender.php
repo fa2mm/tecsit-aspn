@@ -176,15 +176,15 @@ class Sender extends Component
                 $this->context
             );
         } catch (ErrorException $e) {
-            $this->errorResponse['message'] = $this->errorString;
+            $this->errorResponse['message'] = $e->getMessage();
             return false;
         }
 
-        if (!$this->socketClient) {
+        if ($this->socketClient) {
+            return true;
+        } else {
             $this->errorResponse['message'] = $this->errorString;
             return false;
-        } else {
-            return true;
         }
     }
 
