@@ -9,7 +9,7 @@ use \yii\base\ErrorException;
  * Class Sender
  * @package tecsvit\apns
  * @author Aleksandr Mokhonko
- * @version 1.1.1
+ * @version 1.1.2
  *
  * @property string     $apnsHost
  * @property string     $apnsHostProd
