@@ -3,12 +3,13 @@
 namespace tecsvit\apns\src;
 
 use \yii\base\Component;
+use \yii\base\ErrorException;
 
 /**
  * Class Sender
  * @package tecsvit\apns
  * @author Aleksandr Mokhonko
- * @version 1.1.0
+ * @version 1.1.1
  *
  * @property string     $apnsHost
  * @property string     $apnsHostProd
@@ -56,6 +57,7 @@ class Sender extends Component
 
     /**
      * @return void
+     * @throws \Exception
      */
     public function init()
     {
@@ -78,10 +80,12 @@ class Sender extends Component
         $this->setCert();
         $this->setHost();
         $this->setContext();
-        $this->createStreamSocket();
+
+        if (false === $this->createStreamSocket()) {
+            return false;
+        }
 
         //$alert = ['alert' => 'Push Message'];
-
         $body['aps'] = array_merge($this->defaultBody, $alert);
 
         try {
@@ -162,14 +166,19 @@ class Sender extends Component
      */
     private function createStreamSocket()
     {
-        $this->socketClient = stream_socket_client(
-            'ssl://' . $this->apnsHost . ':' . $this->apnsPort,
-            $this->error,
-            $this->errorString,
-            60,
-            STREAM_CLIENT_CONNECT | STREAM_CLIENT_PERSISTENT,
-            $this->context
-        );
+        try {
+            $this->socketClient = stream_socket_client(
+                'ssl://' . $this->apnsHost . ':' . $this->apnsPort,
+                $this->error,
+                $this->errorString,
+                60,
+                STREAM_CLIENT_CONNECT | STREAM_CLIENT_PERSISTENT,
+                $this->context
+            );
+        } catch (ErrorException $e) {
+            $this->errorResponse['message'] = $this->errorString;
+            return false;
+        }
 
         if (!$this->socketClient) {
             $this->errorResponse['message'] = $this->errorString;
